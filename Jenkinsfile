@@ -14,15 +14,13 @@ pipeline {
         }
         stage('Setup Environment') {
             steps {
-                bat 'python -m venv venv'
-                bat '.\\venv\\Scripts\\activate'  // Activate virtual environment
-                bat '.\\venv\\Scripts\\pip install -r requirements.txt'  // Install dependencies
+                bat 'python -m venv venv && .\\venv\\Scripts\\pip install -r requirements.txt'  // Combine environment setup and dependencies installation
             }
         }
         stage('Run Tests') {
-             steps {
-               echo 'No tests defined yet'
-           }
+            steps {
+                echo 'No tests defined yet'  // Placeholder for tests
+            }
         }
         stage('Deploy') {
             steps {
