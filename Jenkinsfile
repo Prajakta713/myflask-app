@@ -9,8 +9,8 @@ pipeline {
         }
         stage('Setup Environment') {
             steps {
-                sh 'python3 -m venv venv'
-                sh './venv/bin/pip install -r requirements.txt'
+                bat 'python -m venv venv'  // Use bat instead of sh on Windows
+                bat '.\\venv\\Scripts\\pip install -r requirements.txt'  // Adjusted for Windows path
             }
         }
         stage('Run Tests') {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'nohup python3 app.py &'
+                bat 'start python app.py'  // Use bat for running Python script in the background
                 echo 'Application Deployed!'
             }
         }
