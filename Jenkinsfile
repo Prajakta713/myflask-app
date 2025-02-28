@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/myflask-app.git'
+                git branch: 'main', url: 'https://github.com/Prajakta713/myflask-app.git'
             }
         }
         stage('Setup Environment') {
