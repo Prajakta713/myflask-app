@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        // Define the path to Python if needed
-        PYTHON_PATH = 'C:\\Program Files\\Python313\\python.exe' // Update if Python is installed elsewhere
+        // Define the path to Python if needed (wrap it in double quotes to handle spaces)
+        PYTHON_PATH = '"C:\\Program Files\\Python313\\python.exe"' // Update if Python is installed elsewhere
     }
 
     stages {
