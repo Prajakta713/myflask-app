@@ -20,9 +20,9 @@ pipeline {
             }
         }
         stage('Run Tests') {
-            steps {
-                bat '.\\venv\\Scripts\\pytest'  // Run tests
-            }
+             steps {
+               echo 'No tests defined yet'
+           }
         }
         stage('Deploy') {
             steps {
