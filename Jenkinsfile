@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Define the path to Python if needed
+        PYTHON_PATH = 'C:\\Program Files\\Python313\\python.exe' // Update if Python is installed elsewhere
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -9,12 +14,13 @@ pipeline {
         }
         stage('Check Python Version') {
             steps {
-                bat 'python --version'  // Ensure Python is available
+                bat "${env.PYTHON_PATH} --version"  // Check Python version
             }
         }
         stage('Setup Environment') {
             steps {
-                bat 'python -m venv venv && .\\venv\\Scripts\\pip install -r requirements.txt'  // Combine environment setup and dependencies installation
+                // Set up virtual environment and install dependencies
+                bat "${env.PYTHON_PATH} -m venv venv && .\\venv\\Scripts\\pip install -r requirements.txt"
             }
         }
         stage('Run Tests') {
@@ -24,7 +30,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat '.\\venv\\Scripts\\python app.py'  // Run the app with Python
+                // Run the app with Python (ensure correct virtual environment activation)
+                bat '.\\venv\\Scripts\\python app.py'  // Ensure the virtual environment is used for running the app
                 echo 'Application Deployed!'
             }
         }
